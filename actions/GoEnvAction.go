@@ -18,20 +18,20 @@ func (act GoEnvAction) DoAction() error {
 	}
 
 	fmt.Printf("Making go environment in %s...\n", currDir)
-	if err := makeRunScript(act.RunFile); err != nil {
+	if err := act.makeRunScript(); err != nil {
 		return err
 	}
-	if err := permitRunScript(act.RunFile); err != nil {
+	if err := act.permitRunScript(); err != nil {
 		return err
 	}
-	makeMainFile()
+	act.makeMainFile()
 
 	return nil
 }
 
-func makeRunScript(runFile string) error {
+func (act *GoEnvAction) makeRunScript() error {
 	// Run file creation and writing
-	f, err := os.Create("./" + runFile + ".sh")
+	f, err := os.Create("./" + act.RunFile + ".sh")
 	defer f.Close()
 	if err != nil {
 		return err
@@ -41,9 +41,9 @@ func makeRunScript(runFile string) error {
 	return nil
 }
 
-func permitRunScript(runFile string) error {
+func (act *GoEnvAction) permitRunScript() error {
 	// Run file permissions
-	cmd := exec.Command("chmod", "+x", "./"+runFile+".sh")
+	cmd := exec.Command("chmod", "+x", "./"+act.RunFile+".sh")
 	if err := cmd.Run(); err != nil {
 		return err
 	}
@@ -51,7 +51,7 @@ func permitRunScript(runFile string) error {
 	return nil
 }
 
-func makeMainFile() {
+func (act *GoEnvAction) makeMainFile() {
 	file := "main.go"
 	if FileExists(file) {
 		fmt.Printf("%s found, skipping generation...", file)
