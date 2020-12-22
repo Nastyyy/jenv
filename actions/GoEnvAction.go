@@ -1,4 +1,4 @@
-package main
+package actions
 
 import (
 	"fmt"
@@ -8,7 +8,7 @@ import (
 )
 
 type GoEnvAction struct {
-	runFile string
+	RunFile string
 }
 
 func (act GoEnvAction) DoAction() error {
@@ -18,10 +18,10 @@ func (act GoEnvAction) DoAction() error {
 	}
 
 	fmt.Printf("Making go environment in %s...\n", currDir)
-	if err := makeRunScript(act.runFile); err != nil {
+	if err := makeRunScript(act.RunFile); err != nil {
 		return err
 	}
-	if err := permitRunScript(act.runFile); err != nil {
+	if err := permitRunScript(act.RunFile); err != nil {
 		return err
 	}
 	makeMainFile()

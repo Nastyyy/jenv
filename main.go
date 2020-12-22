@@ -21,6 +21,8 @@ func main() {
 	for _, command := range args {
 		mapCommand(disp, command)
 	}
+
+	os.Exit(0)
 }
 
 func mapCommand(disp *Dispatcher, command string) {
@@ -29,7 +31,7 @@ func mapCommand(disp *Dispatcher, command string) {
 		err := command.action.DoAction()
 
 		if err != nil {
-			log.Printf("Error executing %s\n%s", command.value, err)
+			log.Fatalf("Error executing %s\n%s", command.value, err)
 		}
 
 	} else {
@@ -62,11 +64,4 @@ func readInput() string {
 	reader := bufio.NewReader(os.Stdin)
 	text, _ := reader.ReadString('\n')
 	return text
-}
-
-func FileExists(filename string) bool {
-	if _, err := os.Stat(filename); err != nil {
-		return false
-	}
-	return true
 }
