@@ -26,17 +26,18 @@ func main() {
 }
 
 func mapCommand(disp *Dispatcher, command string) {
-	if command, err := disp.Map(command); err == nil {
-		fmt.Printf("running %s command...\n", command.value)
-		err := command.action.DoAction()
+	if commandObj, err := disp.Map(command); err == nil {
+		fmt.Printf("running %s command...\n", commandObj.value)
+		err := commandObj.action.DoAction()
 
 		if err != nil {
-			log.Fatalf("Error executing %s\n%s", command.value, err)
+			log.Fatalf("Error executing %s\n%s", commandObj.value, err)
 		}
 
 	} else {
-		fmt.Printf("Error mapCommand: %s", err)
-		//fmt.Printf("Invalid command: %s\n", command)
+		//log.Printf("Error mapCommand: %s", err)
+		fmt.Printf("Invalid command: \"%s\"\n\n", command)
+		printHelp()
 	}
 }
 
