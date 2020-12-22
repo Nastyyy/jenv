@@ -35,7 +35,8 @@ func mapCommand(disp *Dispatcher, command string) {
 		}
 
 	} else {
-		fmt.Printf("Invalid command: %s\n", command)
+		fmt.Printf("Error mapCommand: %s", err)
+		//fmt.Printf("Invalid command: %s\n", command)
 	}
 }
 
@@ -48,8 +49,8 @@ func noArgs() {
 func printHelp() {
 	fmt.Println("Help:")
 
-	for _, command := range getCommands() {
-		fmt.Printf("%s%s: ", indent(1), command.value)
+	for key, command := range getCommands() {
+		fmt.Printf("%s%s: ", indent(1), key)
 		fmt.Printf("%s\n\n", command.action.GetHelp())
 	}
 }

@@ -8,10 +8,15 @@ type Command struct {
 }
 
 // TODO: Change later
-func getCommands() map[string]Command {
-	commands := make(map[string]Command)
-	commands["go"] = Command{"go", actions.GoEnvAction{"jenv-go-run"}}
-	commands["python"] = Command{"python", actions.PythonEnvAction{"jenv-py-run"}}
+func getCommands() map[string]*Command {
+	commands := make(map[string]*Command)
+
+	commands["go"] = &Command{"go", actions.GoEnvAction{"jenv-go-run"}}
+
+	// Python
+	pyCommand := &Command{"py", actions.PythonEnvAction{"jenv-py-run"}}
+	commands["python"] = pyCommand
+	commands["py"] = pyCommand
 
 	return commands
 }

@@ -1,5 +1,5 @@
 a.out
-jmake
+jenv
 deploy.sh
 test-run.sh
 test/
