@@ -63,3 +63,10 @@ func readInput() string {
 	text, _ := reader.ReadString('\n')
 	return text
 }
+
+func FileExists(filename string) bool {
+	if _, err := os.Stat(filename); err != nil {
+		return false
+	}
+	return true
+}
