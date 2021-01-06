@@ -1,6 +1,6 @@
 package main
 
-import "github.com/Nastyyy/jmake/actions"
+import "github.com/Nastyyy/jenv/actions"
 
 type Command struct {
 	value  string

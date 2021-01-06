@@ -1,4 +1,4 @@
-module github.com/Nastyyy/jmake
+module github.com/Nastyyy/jenv
 
 go 1.15
 
