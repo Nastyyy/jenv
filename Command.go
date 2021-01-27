@@ -11,12 +11,11 @@ type Command struct {
 func getCommands() map[string]*Command {
 	commands := make(map[string]*Command)
 
+	// Golang env
 	commands["go"] = &Command{"go", actions.GoEnvAction{"jenv-go-run"}}
 
-	// Python
-	pyCommand := &Command{"py", actions.PythonEnvAction{"jenv-py-run"}}
-	commands["python"] = pyCommand
-	commands["py"] = pyCommand
+	// Python env
+	commands["py"] = &Command{"py", actions.PythonEnvAction{"jenv-py-run"}}
 
 	return commands
 }
