@@ -8,7 +8,6 @@ import (
 )
 
 type PythonEnvAction struct {
-	RunFile string
 }
 
 func (act PythonEnvAction) DoAction() error {

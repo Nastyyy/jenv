@@ -12,10 +12,10 @@ func getCommands() map[string]*Command {
 	commands := make(map[string]*Command)
 
 	// Golang env
-	commands["go"] = &Command{"go", actions.GoEnvAction{"jenv-go-run"}}
+	commands["go"] = &Command{"go", actions.GoEnvAction{"run"}}
 
 	// Python env
-	commands["py"] = &Command{"py", actions.PythonEnvAction{"jenv-py-run"}}
+	commands["py"] = &Command{"py", actions.PythonEnvAction{}}
 
 	return commands
 }
